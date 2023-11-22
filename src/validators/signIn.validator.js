@@ -5,15 +5,15 @@ const isMobileNumber = (value) => {
   return mobileNumberRegex.test(value);
 };
 
-const SignupValidatorSchema = z.object({
+const SignInValidatorSchema = z.object({
   body: z
     .object({
-      name: z.string(),
       phoneNumber: z.string().refine(isMobileNumber, {
         message: "Invalid mobile number. It should be a 10-digit number.",
       }),
+      otp: z.string(),
     })
     .strict(),
 });
 
-export default SignupValidatorSchema;
+export default SignInValidatorSchema;

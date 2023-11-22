@@ -1,24 +1,21 @@
 import { Router } from "express";
-import userController from "../../controllers/user.controller.js";
+import userAuthController from "../../controllers/user.auth.controller.js";
 import ValidateSchema from "../../utils/ValidateSchema.js";
-import SignupValidatorSchema from "../../validators/signup.validator.js";
-import LoginValidatorSchema from "../../validators/login.validator.js";
+import SignInValidatorSchema from "../../validators/signIn.validator.js";
+import generateOtpValidatorSchema from "../../validators/generate-otp.validator.js";
 
-const userRouter = Router();
+const userAuthRouter = Router();
 
-userRouter.post(
-  "/signup",
-  ValidateSchema(SignupValidatorSchema),
-  userController.signup
+userAuthRouter.post(
+  "/signin",
+  ValidateSchema(SignInValidatorSchema),
+  userAuthController.signIn
 );
-userRouter.post(
-  "/login",
-  ValidateSchema(LoginValidatorSchema),
-  userController.login
-);
-userRouter.post(
+
+userAuthRouter.post(
   "/generate/otp",
-  // ValidateSchema(LoginValidatorSchema),
-  userController.loginOtpGenerator
+   ValidateSchema(generateOtpValidatorSchema),
+   userAuthController.otpGenerator
 );
-export default userRouter;
+
+export default userAuthRouter;

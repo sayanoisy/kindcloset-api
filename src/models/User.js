@@ -6,6 +6,8 @@ const User = new schema({
   },
   phoneNumber: {
     type: String,
+    required: true,
+    index: true,
   },
 });
-export default mongoose.model("user", User);
+export default mongoose.model("User", User);

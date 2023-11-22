@@ -5,7 +5,7 @@ const isMobileNumber = (value) => {
   return mobileNumberRegex.test(value);
 };
 
-const LoginValidatorSchema = z.object({
+const generateOtpValidatorSchema = z.object({
   body: z
     .object({
       phoneNumber: z.string().refine(isMobileNumber, {
@@ -15,4 +15,4 @@ const LoginValidatorSchema = z.object({
     .strict(),
 });
 
-export default LoginValidatorSchema;
+export default generateOtpValidatorSchema;
