@@ -21,6 +21,20 @@ const signIn = async (req, res, next) => {
   }
 };
 
+const logout = async (req, res, next) => {
+  try {
+    req.session = null;
+    const response = ResponseHandler(
+      StatusCodes.OK,
+      Messages.SUCCESS,
+      "Succesfully logged out"
+    );
+    return res.status(response.status).json(response);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const otpGenerator = async (req, res, next) => {
   try {
     const { phoneNumber } = req.body;
@@ -38,5 +52,6 @@ const otpGenerator = async (req, res, next) => {
 const userAuthController = {
   signIn,
   otpGenerator,
+  logout,
 };
 export default userAuthController;
