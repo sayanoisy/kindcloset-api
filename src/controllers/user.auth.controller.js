@@ -7,6 +7,9 @@ const signIn = async (req, res, next) => {
   try {
     const { phoneNumber, otp } = req.body;
     const data = await userAuthService.signIn(phoneNumber, otp);
+    req.session = {
+      jwt: data.token,
+    };
     const response = ResponseHandler(
       StatusCodes.CREATED,
       Messages.SUCCESS,

@@ -1,3 +1,4 @@
+import { StatusCodes } from "http-status-codes";
 import User from "../models/User.js";
 import Messages from "../utils/Messages.js";
 
@@ -5,7 +6,9 @@ const getAllUsers = async () => {
   try {
     const users = await User.find();
     if (!users) {
-      throw new Error(Messages.NO_USERS_FOUND);
+      const error = new Error(Messages.NO_USERS_FOUND);
+      error.statusCode = StatusCodes.NOT_FOUND;
+      throw error;
     }
     return users;
   } catch (error) {
@@ -13,13 +16,13 @@ const getAllUsers = async () => {
   }
 };
 
-//some error here
 const getUserById = async (id) => {
-  console.log("id:", id);
   try {
-    const user = await User.findOne({ _id: id });
+    const user = await User.findById(id);
     if (!user) {
-      throw new Error(Messages.USER_DOES_NOT_EXIST);
+      const error = new Error(Messages.USER_DOES_NOT_EXIST);
+      error.statusCode = StatusCodes.NOT_FOUND;
+      throw error;
     }
     return user;
   } catch (error) {
@@ -31,7 +34,9 @@ const getUserByPhoneNumber = async (phoneNumber) => {
   try {
     const user = await User.findOne({ phoneNumber: phoneNumber });
     if (!user) {
-      throw new Error(Messages.USER_DOES_NOT_EXIST);
+      const error = new Error(Messages.USER_DOES_NOT_EXIST);
+      error.statusCode = StatusCodes.NOT_FOUND;
+      throw error;
     }
     return user;
   } catch (error) {
@@ -43,7 +48,9 @@ const saveUser = async (user) => {
   try {
     const existingUser = await User.findOne({ phoneNumber: user.phoneNumber });
     if (existingUser) {
-      throw new Error(Messages.USER_EXISTS);
+      const error = new Error(Messages.USER_EXISTS);
+      error.statusCode = StatusCodes.CONFLICT;
+      throw error;
     }
     const newUser = new User({
       name: user.name,
@@ -59,6 +66,12 @@ const saveUser = async (user) => {
 
 const updateUserName = async (id, userName) => {
   try {
+    const user = await User.findById(id);
+    if (!user) {
+      const error = new Error(Messages.USER_DOES_NOT_EXIST);
+      error.statusCode = StatusCodes.NOT_FOUND;
+      throw error;
+    }
     await User.findByIdAndUpdate(id, { name: userName });
     const updatedUser = await User.findById(id);
 
@@ -70,6 +83,19 @@ const updateUserName = async (id, userName) => {
 
 const updatePhoneNumber = async (id, phoneNumber) => {
   try {
+    let user;
+    user = await User.findById(id);
+    if (!user) {
+      const error = new Error(Messages.USER_DOES_NOT_EXIST);
+      error.statusCode = StatusCodes.NOT_FOUND;
+      throw error;
+    }
+    user = await User.findOne({ phoneNumber: phoneNumber });
+    if (user) {
+      const error = new Error(Messages.SAME_NUMBER_EXISTS);
+      error.statusCode = StatusCodes.CONFLICT;
+      throw error;
+    }
     await User.findByIdAndUpdate(id, { phoneNumber: phoneNumber });
     const updatedUser = await User.findById(id);
 

@@ -8,6 +8,7 @@ const OTP_SECRET_KEY = process.env.OTP_SECRET_KEY;
 const TWILIO_SID = process.env.TWILIO_SID;
 const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
 const TWILIO_NUMBER = process.env.TWILIO_NUMBER;
+const COOKIE_SECRET_KEY = process.env.COOKIE_SECRET_KEY;
 
 export {
   MONGO_CONNECTION_STRING,
@@ -17,4 +18,5 @@ export {
   TWILIO_SID,
   TWILIO_AUTH_TOKEN,
   TWILIO_NUMBER,
+  COOKIE_SECRET_KEY,
 };
