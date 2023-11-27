@@ -5,7 +5,6 @@ import Messages from "./Messages.js";
 const validateOtp = async (phoneNumber, inputOtp) => {
   try {
     const currentTime = new Date(Date.now());
-    console.log("current time :", currentTime);
     const otpToken = await otpTokenService.findOtpTokenByPhoneNumber(
       phoneNumber
     );
@@ -16,7 +15,6 @@ const validateOtp = async (phoneNumber, inputOtp) => {
     }
     const databaseOtp = otpToken.otp;
     const otpExpirationTime = new Date(otpToken.expiresAt);
-    console.log("otp expiration time :", otpExpirationTime);
     if (databaseOtp === inputOtp) {
       if (otpExpirationTime < currentTime) {
         const error = new Error(Messages.OTP_EXPIRED);

@@ -5,7 +5,7 @@ import Messages from "../utils/Messages.js";
 const getAllUsers = async () => {
   try {
     const users = await User.find();
-    if (!users) {
+    if (users.length === 0) {
       const error = new Error(Messages.NO_USERS_FOUND);
       error.statusCode = StatusCodes.NOT_FOUND;
       throw error;
@@ -72,8 +72,11 @@ const updateUserName = async (id, userName) => {
       error.statusCode = StatusCodes.NOT_FOUND;
       throw error;
     }
-    await User.findByIdAndUpdate(id, { name: userName });
-    const updatedUser = await User.findById(id);
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      { name: userName },
+      { new: true }
+    );
 
     return updatedUser;
   } catch (error) {
@@ -96,8 +99,11 @@ const updatePhoneNumber = async (id, phoneNumber) => {
       error.statusCode = StatusCodes.CONFLICT;
       throw error;
     }
-    await User.findByIdAndUpdate(id, { phoneNumber: phoneNumber });
-    const updatedUser = await User.findById(id);
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      { phoneNumber: phoneNumber },
+      { new: true }
+    );
 
     return updatedUser;
   } catch (error) {
