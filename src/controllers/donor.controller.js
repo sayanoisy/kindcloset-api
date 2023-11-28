@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import ResponseHandler from "../utils/ResponseHandler.js";
 import Messages from "../utils/Messages.js";
-import charityService from "../services/charity.service.js";
+import donorService from "../services/donor.service.js";
 
 //Mongo object id check
 const objectIdCheck = async (id) => {
@@ -14,9 +14,9 @@ const objectIdCheck = async (id) => {
   }
 };
 
-const getAllCharities = async (req, res, next) => {
+const getAllDonors = async (req, res, next) => {
   try {
-    const data = await charityService.getAllCharities();
+    const data = await donorService.getAllDonors();
     const response = ResponseHandler(StatusCodes.OK, Messages.SUCCESS, data);
     return res.status(response.status).json(response);
   } catch (err) {
@@ -24,22 +24,12 @@ const getAllCharities = async (req, res, next) => {
   }
 };
 
-const getAllActiveCharities = async (req, res, next) => {
-  try {
-    const data = await charityService.getAllActiveCharities();
-    const response = ResponseHandler(StatusCodes.OK, Messages.SUCCESS, data);
-    return res.status(response.status).json(response);
-  } catch (err) {
-    next(err);
-  }
-};
-
-const getCharityById = async (req, res, next) => {
+const getDonorById = async (req, res, next) => {
   try {
     const { id } = req.params;
     await objectIdCheck(id);
 
-    const data = await charityService.getCharityById(id);
+    const data = await donorService.getDonorById(id);
     const response = ResponseHandler(StatusCodes.OK, Messages.SUCCESS, data);
     return res.status(response.status).json(response);
   } catch (err) {
@@ -47,10 +37,10 @@ const getCharityById = async (req, res, next) => {
   }
 };
 
-const getCharityByUserId = async (req, res, next) => {
+const getDonorByUserId = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const data = await charityService.getCharityByUserId(userId);
+    const data = await donorService.getDonorByUserId(userId);
     const response = ResponseHandler(StatusCodes.OK, Messages.SUCCESS, data);
     return res.status(response.status).json(response);
   } catch (err) {
@@ -58,24 +48,11 @@ const getCharityByUserId = async (req, res, next) => {
   }
 };
 
-const getCharityByOrganizationName = async (req, res, next) => {
-  try {
-    const { organizationName } = req.body;
-    const data = await charityService.getCharityByOrganizationName(
-      organizationName
-    );
-    const response = ResponseHandler(StatusCodes.OK, Messages.SUCCESS, data);
-    return res.status(response.status).json(response);
-  } catch (err) {
-    next(err);
-  }
-};
-
-const saveCharity = async (req, res, next) => {
+const saveDonor = async (req, res, next) => {
   try {
     const body = req.body;
     const id = req.user.id;
-    const data = await charityService.saveCharity(body, id);
+    const data = await donorService.saveDonor(body, id);
     const response = ResponseHandler(
       StatusCodes.CREATED,
       Messages.SUCCESS,
@@ -87,12 +64,13 @@ const saveCharity = async (req, res, next) => {
   }
 };
 
-const updateCharity = async (req, res, next) => {
+const updateDonor = async (req, res, next) => {
   try {
     const { id } = req.params;
-    await objectIdCheck(id);
     const body = req.body;
-    const data = await charityService.updateCharity(id, body);
+    await objectIdCheck(id);
+
+    const data = await donorService.updateDonor(id, body);
     const response = ResponseHandler(StatusCodes.OK, Messages.SUCCESS, data);
     return res.status(response.status).json(response);
   } catch (err) {
@@ -100,11 +78,12 @@ const updateCharity = async (req, res, next) => {
   }
 };
 
-const deleteCharity = async (req, res, next) => {
+const deleteDonor = async (req, res, next) => {
   try {
     const { id } = req.params;
     await objectIdCheck(id);
-    const data = await charityService.deleteCharity(id);
+
+    const data = await donorService.deleteDonor(id);
     const response = ResponseHandler(StatusCodes.OK, Messages.SUCCESS, data);
     return res.status(response.status).json(response);
   } catch (err) {
@@ -112,14 +91,12 @@ const deleteCharity = async (req, res, next) => {
   }
 };
 
-const charityController = {
-  getAllCharities,
-  getAllActiveCharities,
-  getCharityById,
-  getCharityByUserId,
-  getCharityByOrganizationName,
-  saveCharity,
-  updateCharity,
-  deleteCharity,
+const donorController = {
+  getAllDonors,
+  getDonorById,
+  getDonorByUserId,
+  saveDonor,
+  updateDonor,
+  deleteDonor,
 };
-export default charityController;
+export default donorController;

@@ -78,8 +78,8 @@ const getCharityByOrganizationName = async (organizationName) => {
 const saveCharity = async (charity, id) => {
   try {
     const existingCharity = await Charity.findOne({
-      organizationName: charity.organizationName,
-      contactEmail: charity.contactEmail,
+      userId: id,
+      status: true,
     });
     if (existingCharity) {
       const error = new Error(Messages.CHARITY_EXISTS);
