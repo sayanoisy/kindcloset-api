@@ -111,6 +111,25 @@ const updatePhoneNumber = async (id, phoneNumber) => {
   }
 };
 
+const updateUserRole = async (id, role) => {
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      const error = new Error(Messages.USER_DOES_NOT_EXIST);
+      error.statusCode = StatusCodes.NOT_FOUND;
+      throw error;
+    }
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      { role: role },
+      { new: true }
+    );
+    return updatedUser;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const userService = {
   getAllUsers,
   getUserById,
@@ -118,5 +137,6 @@ const userService = {
   saveUser,
   updateUserName,
   updatePhoneNumber,
+  updateUserRole,
 };
 export default userService;

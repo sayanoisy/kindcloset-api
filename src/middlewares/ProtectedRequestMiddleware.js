@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import ErrorHandler from "../utils/ErrorHandler.js";
-import { verifyToken } from "../utils/JwtHandler.js";
+import { verifyAdminToken, verifyToken } from "../utils/JwtHandler.js";
 import Messages from "../utils/Messages.js";
 import rateLimit from "express-rate-limit";
 
@@ -8,6 +8,13 @@ const protectedRequestMiddleware = (req, res, next) => {
   if (!req.session || !req.session.jwt)
     ErrorHandler(StatusCodes.FORBIDDEN, Messages.INVALID_TOKEN);
   req.user = verifyToken(req.session.jwt);
+  next();
+};
+
+const protectedRequestMiddlewareAdmin = (req, res, next) => {
+  if (!req.session || !req.session.jwt)
+    ErrorHandler(StatusCodes.FORBIDDEN, Messages.INVALID_TOKEN);
+  req.user = verifyAdminToken(req.session.jwt);
   next();
 };
 
@@ -21,4 +28,8 @@ const rateLimiter = rateLimit({
   },
 });
 
-export { protectedRequestMiddleware, rateLimiter };
+export {
+  protectedRequestMiddleware,
+  protectedRequestMiddlewareAdmin,
+  rateLimiter,
+};

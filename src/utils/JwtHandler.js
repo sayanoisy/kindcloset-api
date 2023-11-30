@@ -29,4 +29,36 @@ const verifyToken = (token) => {
   }
 };
 
-export { verifyToken, generateToken };
+const verifyAdminToken = (token) => {
+  try {
+    const decodedToken = jwt.verify(token, JWT_SECRET_KEY);
+    if (decodedToken.role !== "admin") {
+      const error = new Error(Messages.INVALID_TOKEN);
+      error.name = "NotAdminError";
+      error.statusCode = StatusCodes.UNAUTHORIZED;
+      throw error;
+    }
+    return decodedToken;
+  } catch (err) {
+    if (err.name === "TokenExpiredError") {
+      const error = new Error(Messages.TOKEN_EXPIRED);
+      error.statusCode = StatusCodes.UNAUTHORIZED;
+      throw error;
+    }
+    if (err.name === "JsonWebTokenError") {
+      const error = new Error(Messages.INVALID_TOKEN);
+      error.statusCode = StatusCodes.UNAUTHORIZED;
+      throw error;
+    }
+    if (err.name === "NotAdminError") {
+      const error = new Error(Messages.UNAUTHORIZED);
+      error.statusCode = StatusCodes.UNAUTHORIZED;
+      throw error;
+    }
+    const error = new Error(Messages.INVALID_TOKEN);
+    error.statusCode = StatusCodes.UNAUTHORIZED;
+    throw error;
+  }
+};
+
+export { verifyToken, generateToken, verifyAdminToken };

@@ -13,7 +13,7 @@ const genOTP = generateOTP({
   digits: true,
   letters: false,
   symbols: false,
-  expiration: "5m",
+  expiration: "4m",
 });
 
 //creating the twilioclient

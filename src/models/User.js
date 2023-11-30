@@ -9,5 +9,9 @@ const User = new schema({
     required: true,
     index: true,
   },
+  role: {
+    type: String,
+    default: "user",
+  },
 });
 export default mongoose.model("User", User);

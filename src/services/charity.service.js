@@ -1,6 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import Messages from "../utils/Messages.js";
 import Charity from "../models/Charity.js";
+import userService from "./user.service.js";
 
 const getAllCharities = async () => {
   try {
@@ -137,6 +138,26 @@ const deleteCharity = async (id) => {
   }
 };
 
+const approveCharity = async (id) => {
+  try {
+    const charity = await Charity.findById(id);
+    if (!charity) {
+      const error = new Error(Messages.CHARITY_DOES_NOT_EXIST);
+      error.statusCode = StatusCodes.NOT_FOUND;
+      throw error;
+    }
+    const approvedCharity = await Charity.findByIdAndUpdate(
+      id,
+      { status: true },
+      { new: true }
+    );
+    await userService.updateUserRole(charity.userId, "charity");
+    return approvedCharity;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const charityService = {
   getAllCharities,
   getAllActiveCharities,
@@ -146,5 +167,6 @@ const charityService = {
   saveCharity,
   updateCharity,
   deleteCharity,
+  approveCharity,
 };
 export default charityService;

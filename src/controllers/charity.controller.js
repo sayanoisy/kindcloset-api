@@ -112,6 +112,18 @@ const deleteCharity = async (req, res, next) => {
   }
 };
 
+const approveCharity = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await objectIdCheck(id);
+    const data = await charityService.approveCharity(id);
+    const response = ResponseHandler(StatusCodes.OK, Messages.SUCCESS, data);
+    return res.status(response.status).json(response);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const charityController = {
   getAllCharities,
   getAllActiveCharities,
@@ -121,5 +133,6 @@ const charityController = {
   saveCharity,
   updateCharity,
   deleteCharity,
+  approveCharity,
 };
 export default charityController;

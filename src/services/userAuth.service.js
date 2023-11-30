@@ -33,6 +33,7 @@ const signIn = async (phoneNumber, inputOtp) => {
     //if there is an user, return a jwt
     const payload = {
       id: userCheck._id,
+      role: userCheck.role,
       phoneNumber: userCheck.phoneNumber,
     };
     const token = generateToken(payload);
