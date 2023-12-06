@@ -1,39 +1,39 @@
 import mongoose from "mongoose";
 const schema = mongoose.Schema;
-const Charity = new schema({
-  organizationName: {
+const Item = new schema({
+  itemType: {
     type: String,
     required: true,
   },
-  contactNumber: {
+  gender: {
     type: String,
     required: true,
   },
-  contactEmail: {
+  ageGroup: {
     type: String,
     required: true,
   },
-  contactLocation: {
+  size: {
     type: String,
     required: true,
   },
-  privacyPreferences: {
-    type: Boolean,
+  condition: {
+    type: String,
     required: true,
   },
-  documents: {
+  images: {
     type: [String],
     required: true,
   },
-  portfolioLink: {
+  description: {
     type: String,
-    required: true,
-  },
-  accreditationStatus: {
-    type: Boolean,
-    required: true,
   },
   userId: {
+    type: String,
+    required: true,
+    index: true,
+  },
+  donorId: {
     type: String,
     required: true,
     index: true,
@@ -44,4 +44,4 @@ const Charity = new schema({
     index: true,
   },
 });
-export default mongoose.model("Charities", Charity);
+export default mongoose.model("Item", Item);

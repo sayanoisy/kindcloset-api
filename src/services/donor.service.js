@@ -1,6 +1,8 @@
 import { StatusCodes } from "http-status-codes";
 import Messages from "../utils/Messages.js";
 import Donor from "../models/Donor.js";
+import userController from "../controllers/user.controller.js";
+import userService from "./user.service.js";
 
 const getAllDonors = async () => {
   try {
@@ -56,7 +58,7 @@ const saveDonor = async (donor, id) => {
       ...donor,
       userId: id,
     });
-
+    await userService.updateUserRole(id, "donor");
     await newDonor.save();
     return newDonor;
   } catch (error) {
