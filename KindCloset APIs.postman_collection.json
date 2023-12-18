@@ -1,0 +1,798 @@
+{
+	"info": {
+		"_postman_id": "afdc59e5-4bdb-4181-8dfe-e38a433c9162",
+		"name": "KindCloset APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26717366"
+	},
+	"item": [
+		{
+			"name": "C-R-U-D operation",
+			"item": [
+				{
+					"name": "User-crud",
+					"item": [
+						{
+							"name": "Get all users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/user/get",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"user",
+										"get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/user/get/655f2dcf05d98c1c95ce4643",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"user",
+										"get",
+										"655f2dcf05d98c1c95ce4643"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user by phone number",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phoneNumber\":\"9064572409\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/user/get",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"user",
+										"get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save user",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"kotheen\",\r\n    \"phoneNumber\":\"9064572409\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/user/save",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"user",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"sayandip\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/user/update/name/656869ba946ad8dd2f90b712",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"user",
+										"update",
+										"name",
+										"656869ba946ad8dd2f90b712"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update phone number",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phoneNumber\":\"9064572409\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/user/update/number/655e0a55ab6d54ffabf526c3",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"user",
+										"update",
+										"number",
+										"655e0a55ab6d54ffabf526c3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Charity-crud",
+					"item": [
+						{
+							"name": "Get all charities",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/charity/get",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"charity",
+										"get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all active charities",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/charity/get/active",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"charity",
+										"get",
+										"active"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get charity by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/charity/get/where/656467d293ff71ac7d9b877e",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"charity",
+										"get",
+										"where",
+										"656467d293ff71ac7d9b877e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get charity by userId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/charity/get/user",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"charity",
+										"get",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get charity by name",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"organizationName\": \"Kheya\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/charity/get/org",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"charity",
+										"get",
+										"org"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save charity",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"organizationName\": \"Kheya\",\r\n    \"contactNumber\": \"9064572409\",\r\n    \"contactEmail\": \"tuhinmahato53@gmail.com\",\r\n    \"contactLocation\": \"basirhat\",\r\n    \"privacyPreferences\": true,\r\n    \"documents\": [\r\n        \"nil\",\r\n        \"null\"\r\n    ],\r\n    \"portfolioLink\": \"nil\",\r\n    \"accreditationStatus\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/charity/save",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"charity",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update charity",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\":false\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/charity/update/656467d293ff71ac7d9b877e",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"charity",
+										"update",
+										"656467d293ff71ac7d9b877e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete charity",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/charity/delete/656467d293ff71ac7d9b877e",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"charity",
+										"delete",
+										"656467d293ff71ac7d9b877e"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Item-crud",
+					"item": [
+						{
+							"name": "Get all items",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/item/get",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"item",
+										"get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all active items",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/item/get/active",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"item",
+										"get",
+										"active"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get item by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/item/get/where/656467d293ff71ac7d9b877e",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"item",
+										"get",
+										"where",
+										"656467d293ff71ac7d9b877e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get item by userId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/item/get/user",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"item",
+										"get",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save item",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"itemType\": \"Shirt\",\r\n    \"gender\": \"Male\",\r\n    \"ageGroup\": \"adult\",\r\n    \"size\": \"xxl\",\r\n    \"condition\": \"new\",\r\n    \"images\": [\r\n        \"nil\",\r\n        \"null\"\r\n    ],\r\n    \"description\": \"nil\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/item/save",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"item",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update items",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\":false\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/item/update/656467d293ff71ac7d9b877e",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"item",
+										"update",
+										"656467d293ff71ac7d9b877e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete item",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/item/delete/656467d293ff71ac7d9b877e",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"item",
+										"delete",
+										"656467d293ff71ac7d9b877e"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Donor-crud",
+					"item": [
+						{
+							"name": "Get all donors",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/donor/get",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"donor",
+										"get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get donorby id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/donor/get/where/65661363e40a362cbcf3ea76",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"donor",
+										"get",
+										"where",
+										"65661363e40a362cbcf3ea76"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get donor by userId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/donor/get/user",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"donor",
+										"get",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save donor",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"donorName\": \"Tuhin\",\r\n    \"contactNumber\": \"9091516131\",\r\n    \"contactEmail\": \"tuhinmahato53@gmail.com\",\r\n    \"contactLocation\": \"basirhat\",\r\n    \"privacyPreferences\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/donor/save",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"donor",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update donor",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"contactLocation\":\"jadavpur\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/donor/update/65661363e40a362cbcf3ea76",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"donor",
+										"update",
+										"65661363e40a362cbcf3ea76"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete donor",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/donor/delete/65661363e40a362cbcf3ea76",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"donor",
+										"delete",
+										"65661363e40a362cbcf3ea76"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Components operation",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Signin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phoneNumber\": \"9064572409\",\r\n    // \"phoneNumber\": \"6290507794\",\r\n    \"otp\": \"7576\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/public/auth/signin",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"public",
+										"auth",
+										"signin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate OTP",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phoneNumber\":\"9064572409\"\r\n    // \"phoneNumber\":\"6290507794\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/public/auth/generate/otp",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"public",
+										"auth",
+										"generate",
+										"otp"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phoneNumber\":\"9064572409\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/profile/logout",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"profile",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "Update number validation",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phoneNumber\":\"9064572409\",\r\n    \"otp\":\"8982\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{LOCALHOST_USER}}/profile/change/number",
+									"host": [
+										"{{LOCALHOST_USER}}"
+									],
+									"path": [
+										"profile",
+										"change",
+										"number"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Admin panel",
+			"item": [
+				{
+					"name": "Approve charity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCALHOST_USER}}/admin/charity/approve/656869cc946ad8dd2f90b716",
+							"host": [
+								"{{LOCALHOST_USER}}"
+							],
+							"path": [
+								"admin",
+								"charity",
+								"approve",
+								"656869cc946ad8dd2f90b716"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
